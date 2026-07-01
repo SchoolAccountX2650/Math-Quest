@@ -1,0 +1,23 @@
+{
+  "entities": {
+    "Score": {
+      "title": "Score",
+      "description": "User's game score",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "difficulty": { "type": "string" },
+        "correctCount": { "type": "number" },
+        "totalQuestions": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "difficulty", "correctCount", "totalQuestions", "createdAt"]
+    }
+  },
+  "firestore": {
+    "scores/{scoreId}": {
+      "schema": { "$ref": "#/entities/Score" },
+      "description": "Stores user scores"
+    }
+  }
+}
