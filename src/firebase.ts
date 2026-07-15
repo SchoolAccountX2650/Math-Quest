@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut, signInAnonymously } from 'firebase/auth';
 import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, orderBy } from 'firebase/firestore';
 import firebaseConfig from '../firebase-applet-config.json';
 
@@ -18,6 +18,15 @@ export const signInWithGoogle = async () => {
     } else {
       alert("ログイン中にエラーが発生しました: " + (error.message || error));
     }
+  }
+};
+
+export const signInAsGuest = async () => {
+  try {
+    await signInAnonymously(auth);
+  } catch (error: any) {
+    console.error("Error signing in as guest", error);
+    alert("ゲストログイン中にエラーが発生しました: " + (error.message || error));
   }
 };
 
