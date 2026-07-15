@@ -6,7 +6,7 @@
 
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { auth, signInWithGoogle, signOut } from './firebase';
+import { auth, signInWithGoogle, signOut , signInAsGuest } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import {
   Loader2, LogOut, Play, User as UserIcon, Trophy, ArrowRight, CheckCircle2, XCircle, Home, Coins,
@@ -2090,6 +2090,9 @@ export default function App() {
           <p className="text-slate-500 mb-8 font-medium">算数から大学数学まで、あなたのレベルで問題をとこう。コンボとスピードでコインを稼ぎ、レベルを上げてシールをコンプリート！</p>
           <button onClick={signInWithGoogle} className="w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white py-4 px-4 rounded-xl font-bold shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] transition-all">
             Googleでログイン
+          </button>
+          <button onClick={signInAsGuest} className="w-full mt-3 flex items-center justify-center gap-3 bg-white hover:bg-slate-100 text-slate-800 font-bold py-3 px-4 rounded-xl border-2 border-slate-900 transition-colors">
+            ゲストで遊ぶ（ログイン不要）
           </button>
         </motion.div>
       </div>
