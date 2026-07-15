@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+/* ===== MATH QUEST — 方眼ノート × refined neo-brutalism のグローバル装飾 ===== */
+:root {
+  --ink: #1e293b;
+  --paper: #fbfaf5;
+  --grid: rgba(37, 99, 235, 0.07);
+  --grid-strong: rgba(37, 99, 235, 0.13);
+}
+
+html, body {
+  font-family: 'M PLUS Rounded 1c', ui-rounded, system-ui, sans-serif;
+  color: var(--ink);
+}
+
+/* 方眼ノートの背景（細グリッド＋太グリッド） */
+body {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    linear-gradient(var(--grid-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-strong) 1px, transparent 1px);
+  background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
+  background-attachment: fixed;
+}
+
+/* 大見出し・ロゴ・数字用のディスプレイフォント */
+.font-display {
+  font-family: 'Baloo 2', 'M PLUS Rounded 1c', ui-rounded, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* 箔/ホロのきらめき */
+@keyframes holoShine {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.holo {
+  background-size: 220% 220% !important;
+  animation: holoShine 3.2s ease-in-out infinite;
+}
+@keyframes sheen {
+  0% { transform: translateX(-120%) skewX(-18deg); opacity: 0; }
+  30% { opacity: 0.9; }
+  60% { opacity: 0; }
+  100% { transform: translateX(220%) skewX(-18deg); opacity: 0; }
+}
+.sheen::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.7) 50%, transparent 70%);
+  animation: sheen 2.6s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.floaty { animation: floaty 3s ease-in-out infinite; }
+
+.tabular-nums { font-variant-numeric: tabular-nums; }
